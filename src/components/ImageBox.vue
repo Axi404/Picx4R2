@@ -1,19 +1,15 @@
 <template>
 	<div
 		class="w-full bg-rose-100 rounded-md shadow-sm overflow-hidden relative"
-		v-if="!imageError"
 	>
 		<loading-overlay :loading="loading" />
 
 		<el-image
-			class="block w-full h-32 lg:h-60"
+			class="block w-full h-40 lg:h-60"
 			:src="src"
 			fit="cover"
 			hide-on-click-modal
-			lazy
-			@error="imageError = true"
 			@load="loading = false"
-			:preview-src-list="[src]"
 		/>
 		<div class="w-full absolute left-0 bottom-0 bg-slate-800/70 backdrop-blur-sm">
 			<div class="p-2">
@@ -42,10 +38,10 @@
 			<div v-if="mode === 'uploaded'">
 				<el-divider class="m-0" />
 				<div class="w-full flex text-white h-9 text-center text-sm">
-					<el-tooltip :content="src" placement="top-start">
+					<el-tooltip :content="copyUrl" placement="top-start">
 						<div
 							class="flex-1 flex items-center justify-center cursor-pointer"
-							@click="copyLink(src)"
+							@click="copyLink(copyUrl)"
 						>
 							<font-awesome-icon :icon="faCopy" class="mr-2" />
 							链接
@@ -87,6 +83,7 @@ import LoadingOverlay from '../components/LoadingOverlay.vue'
 
 const props = defineProps<{
 	src: string
+	copyUrl:string
 	name: string
 	size: number
 	mode: 'converted' | 'uploaded'

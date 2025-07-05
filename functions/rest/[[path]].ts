@@ -1,9 +1,9 @@
 import { error } from 'itty-router-extras';
 
 export interface Env {
-  BASE_URL: string
-  XK: KVNamespace
-  PICX: R2Bucket
+  AUTH_TOKEN: string
+  COPY_URL: string
+  R2: R2Bucket
 }
 
 export const onRequest: PagesFunction<Env> = async (context : EventContext) => {

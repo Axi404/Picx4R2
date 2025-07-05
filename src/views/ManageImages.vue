@@ -25,15 +25,16 @@
         <span v-else class="pl-2 text-gray-600"> {{ it }}</span>
       </div>
     </div>
-		<div class="grid gap-4 grid-cols-4">
+		<div class="grid gap-2 lg:gap-4 lg:grid-cols-4 grid-cols-2">
 			<transition-group name="el-fade-in-linear">
 				<div
-					class="col-span-3 md:col-span-1"
+					class="col-span-1 md:col-span-1"
 					v-for="item in uploadedImages"
 					:key="item.url"
 				>
 					<image-box
 						:src="item.url"
+            :copyUrl="item.copyUrl"
 						:name="item.key"
             :size="item.size"
 						@delete="deleteImage(item.key)"
@@ -69,10 +70,10 @@ const changeFolder = (path : string) => {
   listImages()
 }
 const addFolder = () => {
-  ElMessageBox.prompt('请输入目录名称，仅支持英文名称', '新增目录', {
+  ElMessageBox.prompt('请输入目录名称，仅支持 [0-9A-Za-z_-] 组成的名称', '新增目录', {
     confirmButtonText: '创建',
     cancelButtonText: '取消',
-    inputPattern: /^[A-Za-z_]+$/,
+    inputPattern: /^[0-9A-Za-z_-]+$/,
     inputErrorMessage: '无效的目录名称',
   }).then(({ value }) => {
     loading.value = true
