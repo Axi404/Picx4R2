@@ -40,7 +40,8 @@ export async function getFilePath(val: string, filename: string, time: number): 
         return val
     }
     
-    const rand = Math.floor(Math.random() * 100000)
-    const fileName = randomString(time + rand).concat(`.${types[0].ext}`)
-    return fileName
+    // const rand = Math.floor(Math.random() * 100000)
+    // const fileName = randomString(time + rand).concat(`.${types[0].ext}`)
+    // return fileName
+    return filename
 }
